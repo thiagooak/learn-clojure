@@ -3,15 +3,13 @@ import CodeBlock from "./code-block";
 export default function PostBody({ content }) {
   return (
     <div>
-        {content.map((c) => {
+        {content.map((c, i) => {
             if (c.html) {
-                return (<div
-                    dangerouslySetInnerHTML={{__html: c.html}}
-                />)
+                return (<div key={i} dangerouslySetInnerHTML={{__html: c.html}}/>)
             }
 
             if (c.code) {
-                return (<CodeBlock>{c.code}</CodeBlock>)
+                return (<CodeBlock key={i}>{c.code}</CodeBlock>)
             }
 
             })}
