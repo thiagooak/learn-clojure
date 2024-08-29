@@ -2,19 +2,22 @@ import { remark } from "remark";
 import html from "remark-html";
 
 export default async function markdownToHtml(markdown) {
-    const placeholder = "---CODE-PLACEHOLDER---"
-    const re = /`{3}clojure[^`]*`{3}/g
-    const allMatches = [...markdown.matchAll(re)]
-    const withPlaceholders = markdown.replaceAll(re, placeholder)
-    const parts = withPlaceholders.split(placeholder)
+    const re = /`{3}([a-z]*)([^`]*)`{3}/g //```(language)(content)```
+    const matches = [...markdown.matchAll(re)]
+    const parts = markdown.replaceAll(re, "---CODE-BLOCK-PLACEHOLDER---").split("---CODE-BLOCK-PLACEHOLDER---")
 
     let result = []
     await parts.forEach(async e => {
         result.push({"html": (await remark().use(html).process(e)).toString()})
-        if (allMatches.length > 0) {
-            const codeBlock = allMatches.shift()[0];
-            result.push({"code": codeBlock.replace("```clojure", "").replace("```", "").trim()})
+        if (matches.length > 0) {
+            const codeBlock = matches.shift();
+            result.push({
+                "code": {
+                    lang: codeBlock[1],
+                    content: codeBlock[2].trim()
+                }})
         }
     });
+
     return result;
 }

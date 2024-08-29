@@ -1,9 +1,9 @@
 "use client"
-import { CljsCodeBlock } from "react-interactive-cljs"
+import { CodeBlock as CljsCodeBlock } from "react-interactive-cljs"
 
-const CodeBlock = ({ children }) => {
+const CodeBlock = ({ children, ...props }) => {
 return (
-    <CljsCodeBlock>{children}</CljsCodeBlock>
+    <CljsCodeBlock {...props}>{children}</CljsCodeBlock>
 );
 };
 
