@@ -1,11 +1,9 @@
 ---
-title: "Key Elements of Functional Programming"
+title: "Key Elements of FP"
 sequence: 2
 ---
 
-## Identify Key Elements of Functional Programming
-
-There are some key concepts that will help you understand functional programming. If you are brand new to Clojure, focus on these concepts as you begin to learn the language.
+Key concepts that will help you understand functional programming in Clojure.
 
 * Immutable Data
 * Pure Functions
