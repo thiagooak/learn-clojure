@@ -1,5 +1,5 @@
 ---
-title: "- Side Effects"
+title: "Side Effects"
 sequence: 6
 ---
 

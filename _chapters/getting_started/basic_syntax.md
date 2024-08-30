@@ -1,5 +1,5 @@
 ---
-title: " - Basic Clojure Syntax"
+title: "Basic Syntax"
 sequence: 2
 ---
 

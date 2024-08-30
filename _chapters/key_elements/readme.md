@@ -1,6 +1,6 @@
 ---
 title: "Key Elements of Functional Programming"
-sequence: 3
+sequence: 2
 ---
 
 ## Identify Key Elements of Functional Programming

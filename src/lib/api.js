@@ -4,23 +4,47 @@ import { join } from "path";
 
 const dir = join(process.cwd(), "_chapters");
 
-export function getChapterSlugs() {
-  return fs.readdirSync(dir);
+function getChapterFiles() {
+  return fs.readdirSync(dir, {recursive: true});
 }
 
-export function getChapterBySlug(slug) {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(dir, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+export function getChapter(chapter, part) {
+  const slug = `${chapter}/${part}`
+  const fullPath = join(dir, `${slug}.md`)
+  const fileContents = fs.readFileSync(fullPath, "utf8")
+  const { data, content } = matter(fileContents)
 
-  return { ...data, slug: realSlug, content };
+  return { ...data, slug, content };
+}
+
+function getChapterByPath(path) {
+  const [chapter, part] = path.replace(/\.md$/, "").split("/");
+
+  return getChapter(chapter, part ?? 'readme');
 }
 
 export function getAllChapters() {
-  const slugs = getChapterSlugs();
-  const posts = slugs
-    .map((slug) => getChapterBySlug(slug))
+  const paths = getChapterFiles().filter((name) => name.endsWith(".md"));
+
+  const chapters = paths
+    .map((path) => getChapterByPath(path))
     .sort((a, b) => (a.sequence > b.sequence ? 1 : -1));
-  return posts;
+
+  return chapters;
+}
+
+export function getChaptersTree() {
+  const files = getChapterFiles()
+  const pages = files.filter((name) => name.endsWith(".md"))
+    .filter((name) => !name.endsWith("readme.md")) // dirs link to the readme, so skip them
+  const dirs  = files.filter((name) => !name.endsWith(".md"))
+
+  return dirs.map((dir) => {
+    return {
+      dir: getChapterByPath(dir),
+      pages: pages.filter((page) => page.startsWith(dir))
+        .map((slug) => getChapterByPath(slug))
+        .sort((a, b) => (a.sequence > b.sequence ? 1 : -1))
+    }
+  }).sort((a, b) => (a.dir.sequence > b.dir.sequence ? 1 : -1))
 }

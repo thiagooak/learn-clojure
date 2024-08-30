@@ -1,5 +1,5 @@
 ---
-title: "- Immutable Data"
+title: "Immutable Data"
 sequence: 4
 ---
 

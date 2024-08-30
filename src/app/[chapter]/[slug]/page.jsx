@@ -1,11 +1,24 @@
 import { notFound } from "next/navigation";
-import { getAllChapters, getChapterBySlug } from "@/lib/api";
+import { getAllChapters, getChapter, getChaptersTree } from "@/lib/api";
 import markdownToHtml from "@/lib/markdownToHtml";
 import PostBody from "@/app/_components/post-body";
 
+function NavPart({path, title}) {
+  return (<li><a href={`/${path}`}>{title}</a></li>)
+}
+
+function NavChapter({path, title, children}) {
+  return (<li>
+    <a href={`/${path}`}>{title}</a>
+    <ul className="ml-4">
+      {children}
+    </ul>
+  </li>);
+}
+
 export default async function Chapter({ params }) {
-  const allChapters = getAllChapters();
-  const chapter = getChapterBySlug(params.slug);
+  const nestedChapters = getChaptersTree();
+  const chapter = getChapter(params.chapter, params.slug);
 
   if (!chapter) {
     return notFound();
@@ -17,9 +30,10 @@ export default async function Chapter({ params }) {
     <main className="flex p-4">
         <div>
             <ul>
-            {allChapters.map((p) => {
-                return <li key={p.slug}><a href={`/chapters/${p.slug}`}>{p.title}</a></li>
-            })}
+              {nestedChapters.map((chapter) =>
+                (<NavChapter key={chapter.dir.slug} path={chapter.dir.slug} title={chapter.dir.title}>
+                  {chapter.pages.map((page) => (<NavPart key={page.slug} path={page.slug} title={page.title} ></NavPart>))}
+                </NavChapter>))}
             </ul>
         </div>
         <div className="max-w-2xl mx-auto prose lg:prose-xl">
@@ -32,7 +46,7 @@ export default async function Chapter({ params }) {
 }
 
 export function generateMetadata({ params }) {
-  const chapter = getChapterBySlug(params.slug);
+  const chapter = getChapter(params.chapter, params.slug);
 
   if (!chapter) {
     return notFound();

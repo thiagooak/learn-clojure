@@ -1,5 +1,5 @@
 ---
-title: "- Pure Functions"
+title: "Pure Functions"
 sequence: 5
 ---
 

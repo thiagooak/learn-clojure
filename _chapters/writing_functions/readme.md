@@ -1,6 +1,6 @@
 ---
 title: "Writing Functions"
-sequence: 10
+sequence: 3
 ---
 
 ## Objectives
