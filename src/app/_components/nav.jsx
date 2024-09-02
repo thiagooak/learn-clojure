@@ -1,10 +1,10 @@
 function NavPart({path, title}) {
-    return (<li><a href={`/${path}`}>{title}</a></li>)
+    return (<li><a href={`/${path}`} className="hover:underline text-sm">{title}</a></li>)
   }
 
 function NavChapter({path, title, children}) {
     return (<li>
-        <a href={`/${path}`}>{title}</a>
+        <a href={`/${path}`} className="hover:underline">{title}</a>
         <ul className="ml-4">
         {children}
         </ul>
