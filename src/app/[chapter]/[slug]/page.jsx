@@ -5,6 +5,8 @@ import PostBody from "@/app/_components/post-body";
 import Repl from "@/app/_components/repl";
 import Nav from "@/app/_components/nav";
 
+export const dynamicParams = false
+
 export default async function Chapter({ params }) {
   const chapter = getChapter(params.chapter, params.slug);
 
