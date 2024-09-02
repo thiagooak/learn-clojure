@@ -15,3 +15,13 @@ This website features interactive code blocks that allow you to run Clojure code
 ```clojure
 (println "Hello World")
 ```
+
+## IntelliJ Setup
+
+@TODO expand on IDE integration
+
+This course assumes a specific setup using IntelliJ IDEA
+with two plugins ([LSP](https://github.com/clojure-lsp/clojure-lsp-intellij/)
+and [REPL](https://github.com/afucher/clojure-repl-intellij/))
+You are free to complete the course with another setup,
+but you'll need to adapt the keyboard shortcuts and a few details.
