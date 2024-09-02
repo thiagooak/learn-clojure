@@ -5,7 +5,7 @@ import { join } from "path";
 const dir = join(process.cwd(), "_chapters");
 
 function getChapterFiles() {
-  return fs.readdirSync(dir, {recursive: true});
+  return fs.readdirSync(dir, {recursive: false});
 }
 
 export function getChapter(chapter, part) {
