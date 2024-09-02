@@ -23,9 +23,30 @@ body {
 }
 
 @layer components {
+  .repl-wrapper {
+    @apply w-2/6 min-w-80 bg-slate-800 text-white max-h-screen min-h-screen h-screen overflow-scroll scroll-smooth;
+    color:#a9b7c6;
+    background:#2b2b2b;
+  }
   .repl-output {
-    @apply px-2 py-1 h-3/4;
-    /* max-h-3/4 */
+    @apply px-2 py-1 h-3/4 overflow-scroll max-h-screen;
+    color:#a9b7c6;
+    font-family:Consolas, Monaco, 'Andale Mono', monospace;
+    direction:ltr;
+    text-align:left;
+    white-space:pre;
+    word-spacing:normal;
+    word-break:normal;
+    line-height:1.5;
+    -moz-tab-size:4;
+    -o-tab-size:4;
+    tab-size:4;
+    -webkit-hyphens:none;
+    -moz-hyphens:none;
+    -ms-hyphens:none;
+    hyphens:none;
+    padding:1em;
+    background:#2b2b2b
   }
 
   .repl-submit {
@@ -33,11 +54,13 @@ body {
   }
 
   .repl-form {
-    @apply flex-row sm:flex px-2 sm:h-1/4
+    @apply flex-row sm:flex px-0 sm:h-1/4 border-t-2;
   }
 
   .repl-textarea {
-    @apply w-full h-full p-1 bg-gray-800
+    @apply w-full h-full p-1;
+    background:#2b2b2b;
+    font-family:Consolas, Monaco, 'Andale Mono', monospace;
   }
 
 }

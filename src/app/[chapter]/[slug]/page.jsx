@@ -19,7 +19,7 @@ export default async function Chapter({ params }) {
 
   return (
     <main className="flex">
-        <div className="w-1/6 p-4">
+        <div className="w-1/6 p-4 max-h-screen overflow-scroll">
             <Nav nestedChapters={nestedChapters} />
         </div>
         <div className="w-3/6 max-h-screen overflow-scroll">
@@ -31,11 +31,7 @@ export default async function Chapter({ params }) {
               </div>
           </div>
         </div>
-
-        <div className="w-2/6 min-w-80 bg-slate-800 text-white p-4 max-h-screen min-h-screen h-screen bg-black text-white overflow-scroll scroll-smooth">
-          <Repl></Repl>
-        </div>
-
+        <Repl></Repl>
     </main>
   );
 }
