@@ -8,7 +8,7 @@ sequence: 1
 The core of `clojure.test` is the `is` macro.
 `is` lets you make assertions of any expression.
 
-```clojure
+```clojureevaloff
 (require '[clojure.test :refer :all])
 
 (is (= 4 (+ 2 2)))
@@ -29,7 +29,7 @@ The core of `clojure.test` is the `is` macro.
 
 explain the `deftest` macro
 
-```clojure
+```clojureevaloff
 (require '[clojure.test :refer :all])
 ; nil
 

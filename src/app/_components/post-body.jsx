@@ -8,7 +8,9 @@ export default function PostBody({ content }) {
                 return (<div key={i} dangerouslySetInnerHTML={{__html: c.html}}/>)
             }
             if (c.code) {
-                return (<CodeBlock key={i} language={c.code.lang}>{c.code.content}</CodeBlock>)
+                const allowEval = c.code.lang !== "clojureevaloff";
+                const lang = c.code.lang === "clojureevaloff" ? "clojure" : c.code.lang;
+                return (<CodeBlock key={i} language={lang} allowEval={allowEval}>{c.code.content}</CodeBlock>)
             }})}
     </div>
   );
