@@ -21,3 +21,23 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .repl-output {
+    @apply px-2 py-1 h-3/4;
+    /* max-h-3/4 */
+  }
+
+  .repl-submit {
+    @apply rounded bg-blue-600 py-1 px-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600;
+  }
+
+  .repl-form {
+    @apply flex-row sm:flex px-2 sm:h-1/4
+  }
+
+  .repl-textarea {
+    @apply w-full h-full p-1 bg-gray-800
+  }
+
+}
