@@ -1,5 +1,5 @@
 ---
-title: "Multi-arity Functions"
+title: "Multi-arity"
 sequence: 5
 ---
 

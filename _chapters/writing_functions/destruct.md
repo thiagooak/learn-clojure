@@ -1,5 +1,5 @@
 ---
-title: "Destructuring Function Parameters"
+title: "Destructuring"
 sequence: 6
 ---
 
