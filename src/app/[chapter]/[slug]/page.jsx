@@ -62,6 +62,7 @@ export async function generateStaticParams() {
   const chapters = getAllChapters();
 
   return chapters.map((chapter) => ({
-    slug: chapter.slug,
+    chapter: chapter.slug.split("/")[0],
+    slug: chapter.slug.split("/")[1],
   }));
 }
