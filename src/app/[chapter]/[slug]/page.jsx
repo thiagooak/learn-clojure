@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAllChapters, getChapter } from "@/lib/api";
+import { getAllChapters, getChapter, getChaptersTree } from "@/lib/api";
 import markdownToHtml from "@/lib/markdownToHtml";
 import PostBody from "@/app/_components/post-body";
 import Repl from "@/app/_components/repl";
@@ -12,12 +12,13 @@ export default async function Chapter({ params }) {
     return notFound();
   }
 
+  const nestedChapters = getChaptersTree();
   const content = await markdownToHtml(chapter.content || "");
 
   return (
     <main className="flex">
         <div className="w-1/6 p-4">
-            <Nav />
+            <Nav nestedChapters={nestedChapters} />
         </div>
         <div className="w-3/6 max-h-screen overflow-scroll">
           <div className="max-w-2xl p-4 mx-auto prose lg:prose-xl">

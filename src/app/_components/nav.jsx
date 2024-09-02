@@ -1,5 +1,3 @@
-import { getChaptersTree } from "@/lib/api";
-
 function NavPart({path, title}) {
     return (<li><a href={`/${path}`}>{title}</a></li>)
   }
@@ -13,8 +11,7 @@ function NavChapter({path, title, children}) {
     </li>);
 }
 
-export default function Nav() {
-  const nestedChapters = getChaptersTree();
+export default function Nav({nestedChapters}) {
   return (
     <ul>
         {nestedChapters.map((chapter) =>
